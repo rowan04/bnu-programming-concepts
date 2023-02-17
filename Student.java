@@ -20,15 +20,18 @@ public class Student {
 
 class assign {
     public static void main(String[] args) {
+        // instantiating object of student class
+        Student student1 = new Student("Rowan" ,22220407);
+        String name1 = student1.getName();
+        int id1 = student1.getId();
+        printStudent(name1, id1);
+        
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter student name:");
         String studentName = scan.nextLine();
         System.out.println("Enter student id:");
         int studentId = scan.nextInt();
         scan.close();
-
-        // instantiating object of student class
-        Student student1 = new Student("Rowan" ,22220407);
 
         Student student = new Student(studentName, studentId);
         String name = student.getName();
@@ -38,6 +41,6 @@ class assign {
 
     public static void printStudent(String name, int id) {
         System.out.println("Student name is: " + name);
-        System.out.println("Student name is: " + id);
+        System.out.println("Student id is: " + id);
     }
 }
