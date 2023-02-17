@@ -27,6 +27,9 @@ class assign {
         int studentId = scan.nextInt();
         scan.close();
 
+        // instantiating object of student class
+        Student student1 = new Student("Rowan" ,22220407);
+
         Student student = new Student(studentName, studentId);
         String name = student.getName();
         int id = student.getId();
