@@ -28,5 +28,13 @@ class assign {
         scan.close();
 
         Student student = new Student(studentName, studentId);
+        String name = student.getName();
+        int id = student.getId();
+        printStudent(name, id);
+    }
+
+    public static void printStudent(String name, int id) {
+        System.out.println("Student name is: " + name);
+        System.out.println("Student name is: " + id);
     }
 }
