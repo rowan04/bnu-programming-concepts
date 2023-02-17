@@ -63,6 +63,10 @@ public class Student {
     public int getId() {
         return id;
     }
+
+    public void enroll(Course student_course) {
+        this.course = student_course;
+    }
 }
 
 class Course {
