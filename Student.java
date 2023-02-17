@@ -17,3 +17,16 @@ public class Student {
         return id;
     }
 }
+
+class assign {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter student name:");
+        String studentName = scan.nextLine();
+        System.out.println("Enter student id:");
+        int studentId = scan.nextInt();
+        scan.close();
+
+        Student student = new Student(studentName, studentId);
+    }
+}
