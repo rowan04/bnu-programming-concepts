@@ -18,6 +18,7 @@ class assign {
         String courseCode = scan.next();
         System.out.println("Enter course name:");
         String courseName = scan.next();
+        System.out.println("\n");
         scan.close();
 
         // student constructor
