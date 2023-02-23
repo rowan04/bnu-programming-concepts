@@ -3,10 +3,10 @@ import java.util.Scanner;
 class assign {
     public static void main(String[] args) {
         // instantiating object of student class
-        Student student1 = new Student("Rowan" ,22220407);
-        String name1 = student1.getName();
-        int id1 = student1.getId();
-        printStudent(name1, id1);
+        //Student student1 = new Student("Rowan" ,22220407);
+        //String name1 = student1.getName();
+        //int id1 = student1.getId();
+        //printStudent(name1, id1);
         
         // student constructor
         Scanner scan = new Scanner(System.in);
@@ -14,29 +14,31 @@ class assign {
         String studentName = scan.nextLine();
         System.out.println("Enter student id:");
         int studentId = scan.nextInt();
-
-        Student student = new Student(studentName, studentId);
-        String name = student.getName();
-        int id = student.getId();
-        printStudent(name, id);
-
-        // course constructor
         System.out.println("Enter course code:");
         String courseCode = scan.next();
         System.out.println("Enter course name:");
         String courseName = scan.next();
         scan.close();
 
+        Student student = new Student(studentName, studentId);
+        String name = student.getName();
+        int id = student.getId();
+
         Course course = new Course(courseCode, courseName);
         String course_code = course.getCode();
         String course_name = course.getName();
+        
+        student.Enroll(course);
+        
+        printStudent(name, id, course_name);
         printCourse(course_code, course_name);
     }
 
     //print student details
-    public static void printStudent(String name, int id) {
+    public static void printStudent(String name, int id, String course_name) {
         System.out.println("Student name is: " + name);
         System.out.println("Student id is: " + id);
+        System.out.println("They are enrolled on: " + course_name + "\n");
     }
 
     //print course details
@@ -54,6 +56,7 @@ public class Student {
     public Student(String name, int id) {
         this.name = name;
         this.id = id;
+        //this.course = course;
     }
     
     public String getName() {
@@ -64,8 +67,8 @@ public class Student {
         return id;
     }
 
-    public void enroll(Course student_course) {
-        this.course = student_course;
+    public void Enroll(Course course) {
+        this.course = course;
     }
 }
 
