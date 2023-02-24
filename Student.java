@@ -1,14 +1,14 @@
-import java.util.Scanner;
+//import java.util.Scanner;
 
 class assign {
     public static void main(String[] args) {
         // instantiating object of student class using set values
-        //Student student1 = new Student("Rowan" ,22220407);
-        //String name1 = student1.getName();
-        //int id1 = student1.getId();
-        //printStudent(name1, id1);
+        String studentName = "Rowan";
+        int studentId = 22220407;
+        String courseCode = "CO452";
+        String courseName = "Programming Concepts";
         
-        // get values from user to instantiate object
+        /* get values from user to instantiate object
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter student name:");
         String studentName = scan.nextLine();
@@ -20,6 +20,7 @@ class assign {
         String courseName = scan.next();
         System.out.println("\n");
         scan.close();
+        */
 
         // student constructor
         Student student = new Student(studentName, studentId);
