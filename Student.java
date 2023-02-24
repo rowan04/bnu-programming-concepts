@@ -1,5 +1,6 @@
 //import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Random;
 
 class assign {
     public static void main(String[] args) {
@@ -48,10 +49,11 @@ class assign {
         modules.add(module4);
 
         // add marks for each module
-        int mark1 = 0;
-        int mark2 = 1;
-        int mark3 = 2;
-        int mark4 = 3;
+        Random randomNum = new Random();
+        int mark1 = randomNum.nextInt(101);
+        int mark2 = randomNum.nextInt(101);
+        int mark3 = randomNum.nextInt(101);
+        int mark4 = randomNum.nextInt(101);
 
         // student constructor
         Student student = new Student(studentName, studentId, mark1, mark2, mark3, mark4);
@@ -75,7 +77,6 @@ class assign {
 
         // get marks array
         int[] marks = Student.getMarks();
-        
 
         // printing course modules
         System.out.println("Course modules are:");
