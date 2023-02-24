@@ -23,16 +23,6 @@ class assign {
         scan.close();
         */
 
-        // student constructor
-        Student student = new Student(studentName, studentId);
-        String name = student.getName();
-        int id = student.getId();
-
-        // course constructor
-        Course course = new Course(courseCode, courseName);
-        String course_code = course.getCode();
-        String course_name = course.getName();
-
         // module constructors
         String module1Name = "Programming Concepts";
         String module1Code = "CO452";
@@ -56,6 +46,22 @@ class assign {
         modules.add(module2);
         modules.add(module3);
         modules.add(module4);
+
+        // add marks for each module
+        int mark1 = 0;
+        int mark2 = 0;
+        int mark3 = 0;
+        int mark4 = 0;
+
+        // student constructor
+        Student student = new Student(studentName, studentId, mark1, mark2, mark3, mark4);
+        String name = student.getName();
+        int id = student.getId();
+
+        // course constructor
+        Course course = new Course(courseCode, courseName);
+        String course_code = course.getCode();
+        String course_name = course.getName();
         
         // enroll student on course
         student.Enroll(course);
@@ -96,9 +102,13 @@ public class Student {
     public Course course;
     public int[] marks = new int[4];
     
-    public Student(String name, int id) {
+    public Student(String name, int id, int mark1, int mark2, int mark3, int mark4) {
         this.name = name;
         this.id = id;
+        this.marks[0] = mark1;
+        this.marks[1] = mark2;
+        this.marks[2] = mark3;
+        this.marks[3] = mark4;
     }
     
     public String getName() {
