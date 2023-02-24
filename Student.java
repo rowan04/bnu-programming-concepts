@@ -81,11 +81,31 @@ class assign {
         // printing course modules
         System.out.println("Course modules are:");
         int count = 0;
+        String grade = "";
         for(Module module : modules) {
             String module_name = module.getModuleName();
             String module_code = module.getModuleCode();
             System.out.println("Module: " + module_name + ", with code: " + module_code);
-            System.out.println("Marks for module is: " + marks[count]);
+            // outputting mark and grade for each module
+            int mark = marks[count];
+            if (mark >= 0 && mark <= 29) {
+                grade = "Grade F";
+            } else if (mark >= 30 && mark <= 39) {
+                grade = "Grade E";
+            } else if (mark >= 40 && mark <= 49) {
+                grade = "Grade D";
+            } else if (mark >= 50 && mark <= 59) {
+                grade = "Grade C";
+            } else if (mark >= 60 && mark <= 69) {
+                grade = "Grade B";
+            } else if (mark >=70 && mark <= 89) {
+                grade = "Grade A";
+            } else if (mark >=90 && mark <= 100) {
+                grade = "Grade A*";
+            } else {
+                grade = "Grade invalid - invalid mark";
+            }
+            System.out.println("Marks for module is: " + mark + ", so grade for module is: " + grade + ".");
             count = count + 1;
         }
     }
