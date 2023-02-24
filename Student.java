@@ -94,6 +94,7 @@ public class Student {
     public String name;
     public int id;
     public Course course;
+    public int[] marks = new int[4];
     
     public Student(String name, int id) {
         this.name = name;
