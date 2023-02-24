@@ -49,9 +49,9 @@ class assign {
 
         // add marks for each module
         int mark1 = 0;
-        int mark2 = 0;
-        int mark3 = 0;
-        int mark4 = 0;
+        int mark2 = 1;
+        int mark3 = 2;
+        int mark4 = 3;
 
         // student constructor
         Student student = new Student(studentName, studentId, mark1, mark2, mark3, mark4);
@@ -73,12 +73,19 @@ class assign {
         printStudent(name, id, course_name);
         printCourse(course_code, course_name);
 
+        // get marks array
+        int[] marks = Student.getMarks();
+        
+
         // printing course modules
         System.out.println("Course modules are:");
+        int count = 0;
         for(Module module : modules) {
             String module_name = module.getModuleName();
             String module_code = module.getModuleCode();
             System.out.println("Module: " + module_name + ", with code: " + module_code);
+            System.out.println("Marks for module is: " + marks[count]);
+            count = count + 1;
         }
     }
 
@@ -100,15 +107,15 @@ public class Student {
     public String name;
     public int id;
     public Course course;
-    public int[] marks = new int[4];
+    public static int[] marks = new int[4];
     
     public Student(String name, int id, int mark1, int mark2, int mark3, int mark4) {
         this.name = name;
         this.id = id;
-        this.marks[0] = mark1;
-        this.marks[1] = mark2;
-        this.marks[2] = mark3;
-        this.marks[3] = mark4;
+        Student.marks[0] = mark1;
+        Student.marks[1] = mark2;
+        Student.marks[2] = mark3;
+        Student.marks[3] = mark4;
     }
     
     public String getName() {
@@ -117,6 +124,10 @@ public class Student {
     
     public int getId() {
         return id;
+    }
+
+    public static int[] getMarks() {
+        return marks;
     }
 
     public void Enroll(Course course) {
