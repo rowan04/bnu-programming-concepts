@@ -37,26 +37,18 @@ class assign {
         String module1Name = "Programming Concepts";
         String module1Code = "CO452";
         Module module1 = new Module(module1Name, module1Code);
-        String module1_name = module1.getModuleName();
-        String module1_code = module1.getModuleCode();
 
         String module2Name = "Computer Architectures";
         String module2Code = "CO450";
         Module module2 = new Module(module2Name, module2Code);
-        String module2_name = module2.getModuleName();
-        String module2_code = module2.getModuleCode();
 
         String module3Name = "Web Development";
         String module3Code = "CO456";
         Module module3 = new Module(module3Name, module3Code);
-        String module3_name = module3.getModuleName();
-        String module3_code = module3.getModuleCode();
 
         String module4Name = "Networking";
         String module4Code = "CO451";
         Module module4 = new Module(module4Name, module4Code);
-        String module4_name = module4.getModuleName();
-        String module4_code = module4.getModuleCode();
 
         // add modules to ArrayList
         ArrayList<Module> modules = new ArrayList<Module>();
@@ -67,10 +59,21 @@ class assign {
         
         // enroll student on course
         student.Enroll(course);
-        
+
+        //add modules to course
+        course.AddModules(modules);
+
         // print methods
         printStudent(name, id, course_name);
         printCourse(course_code, course_name);
+
+        // printing course modules
+        System.out.println("Course modules are:");
+        for(Module module : modules) {
+            String module_name = module.getModuleName();
+            String module_code = module.getModuleCode();
+            System.out.println("Module: " + module_name + ", with code: " + module_code);
+        }
     }
 
     //print student details
@@ -83,7 +86,7 @@ class assign {
     //print course details
     public static void printCourse(String code, String name) {
         System.out.println("Course code is: " + code);
-        System.out.println("Course name is: " + name);
+        System.out.println("Course name is: " + name + "\n");
     }
 }
 
