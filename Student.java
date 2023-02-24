@@ -93,3 +93,21 @@ class Course {
         return name;
     }
 }
+
+class Module {
+    public String moduleName;
+    public String moduleCode;
+
+    public Module(String moduleName, String moduleCode) {
+        this.moduleName = moduleName;
+        this.moduleCode = moduleCode;
+    }
+
+    public String getModuleName() {
+        return moduleName;
+    }
+
+    public String getModuleCode() {
+        return moduleCode;
+    }
+}
