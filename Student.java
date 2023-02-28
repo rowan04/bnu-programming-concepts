@@ -71,26 +71,13 @@ class assign {
         //add modules to course
         course.AddModules(modules);
 
-        // print methods
-        printStudent(name, id, course_name);
-        printCourse(course_code, course_name);
-
         // get marks array
         int[] marks = Student.getMarks();
 
-        // printing course modules
-        System.out.println("Course modules are:");
-        int count = 0;
-        for(Module module : modules) {
-            String module_name = module.getModuleName();
-            String module_code = module.getModuleCode();
-            System.out.println("Module: " + module_name + ", with code: " + module_code);
-            // outputting mark and grade for each module
-            int mark = marks[count];
-            Module.grade grade = module.getGrade(mark);
-            System.out.println("Marks for module is: " + mark + ", so grade for module is: Grade " + grade + ".");
-            count = count + 1;
-        }
+        // print methods
+        printStudent(name, id, course_name);
+        printCourse(course_code, course_name);
+        printModules(modules, marks);
     }
 
     //print student details
@@ -104,6 +91,22 @@ class assign {
     public static void printCourse(String code, String name) {
         System.out.println("Course code is: " + code);
         System.out.println("Course name is: " + name + "\n");
+    }
+
+    // printing course modules
+    public static void printModules(ArrayList<Module> modules, int[] marks) {
+        System.out.println("Course modules are:");
+        int count = 0;
+        for(Module moduleX : modules) {
+            String module_name = moduleX.getModuleName();
+            String module_code = moduleX.getModuleCode();
+            System.out.println("Module: " + module_name + ", with code: " + module_code);
+            // outputting mark and grade for each module
+            int mark = marks[count];
+            Module.grade grade = moduleX.getGrade(mark);
+            System.out.println("Marks for module is: " + mark + ", so grade for module is: Grade " + grade + ".");
+            count = count + 1;
+        }
     }
 }
 
