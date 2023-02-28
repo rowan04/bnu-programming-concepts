@@ -4,25 +4,9 @@ import java.util.Random;
 
 class assign {
     public static void main(String[] args) {
-        // instantiating object of student class using set values
-        String studentName = "Rowan";
-        int studentId = 22220407;
+        // creating course values
         String courseCode = "BB1DTS2";
         String courseName = "BSc (Hons) Digital and Technology Solutions";
-        
-        /* get values from user to instantiate object
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter student name:");
-        String studentName = scan.nextLine();
-        System.out.println("Enter student id:");
-        int studentId = scan.nextInt();
-        System.out.println("Enter course code:");
-        String courseCode = scan.next();
-        System.out.println("Enter course name:");
-        String courseName = scan.next();
-        System.out.println("\n");
-        scan.close();
-        */
 
         // module constructors
         String module1Name = "Programming Concepts";
@@ -48,64 +32,100 @@ class assign {
         modules.add(module3);
         modules.add(module4);
 
-        // add marks for each module
-        Random randomNum = new Random();
-        int mark1 = randomNum.nextInt(101);
-        int mark2 = randomNum.nextInt(101);
-        int mark3 = randomNum.nextInt(101);
-        int mark4 = randomNum.nextInt(101);
-
-        // student constructor
-        Student student = new Student(studentName, studentId, mark1, mark2, mark3, mark4);
-        String name = student.getName();
-        int id = student.getId();
-
         // course constructor
         Course course = new Course(courseCode, courseName);
         String course_code = course.getCode();
         String course_name = course.getName();
-        
-        // enroll student on course
-        student.Enroll(course);
 
-        //add modules to course
+        // add modules to course
         course.AddModules(modules);
 
-        // get marks array
-        int[] marks = Student.getMarks();
+        // output course info
+        printCourse(course_code, course_name, modules);
 
-        // print methods
-        printStudent(name, id, course_name);
-        printCourse(course_code, course_name);
-        printModules(modules, marks);
+        // student constructors
+        String student1Name = "Rowan";
+        int student1Id = 22220407;
+        Student student1 = new Student(student1Name, student1Id);
+
+        String student2Name = "Beth";
+        int student2Id = 22229613;
+        Student student2 = new Student(student2Name, student2Id);
+
+        String student3Name = "Max";
+        int student3Id = 22225520;
+        Student student3 = new Student(student3Name, student3Id);
+
+        String student4Name = "Ella";
+        int student4Id = 22223167;
+        Student student4 = new Student(student4Name, student4Id);
+
+        // add students to ArrayList
+        ArrayList<Student> students = new ArrayList<Student>();
+        students.add(student1);
+        students.add(student2);
+        students.add(student3);
+        students.add(student4);
+
+        // print student and marks for each module
+        printStudent(students, course, course_name, modules);
     }
 
-    //print student details
-    public static void printStudent(String name, int id, String course_name) {
-        System.out.println("Student name is: " + name);
-        System.out.println("Student id is: " + id);
-        System.out.println("They are enrolled on: " + course_name + "\n");
-    }
-
-    //print course details
-    public static void printCourse(String code, String name) {
+    //print course details and it's modules
+    public static void printCourse(String code, String name, ArrayList<Module> modules) {
+        // output course details
+        System.out.println("Course name is: " + name);
         System.out.println("Course code is: " + code);
-        System.out.println("Course name is: " + name + "\n");
-    }
-
-    // printing course modules
-    public static void printModules(ArrayList<Module> modules, int[] marks) {
         System.out.println("Course modules are:");
+        // output modules
         int count = 0;
         for(Module moduleX : modules) {
             String module_name = moduleX.getModuleName();
             String module_code = moduleX.getModuleCode();
-            System.out.println("Module: " + module_name + ", with code: " + module_code);
-            // outputting mark and grade for each module
-            int mark = marks[count];
-            Module.grade grade = moduleX.getGrade(mark);
-            System.out.println("Marks for module is: " + mark + ", so grade for module is: Grade " + grade + ".");
+            System.out.println(module_name + ", with code: " + module_code);
             count = count + 1;
+        }
+        // output new line to seperate outputs
+        System.out.println("");
+    }
+
+    //print student details and their mark/grade for each of their modules
+    public static void printStudent(ArrayList<Student> students, Course course, String course_name, ArrayList<Module> modules) {
+        for(Student studentX : students) {
+            // get student info
+            String name = studentX.getName();
+            int id = studentX.getId();
+
+            //enroll student on course
+            studentX.Enroll(course);
+
+            // generate marks for each module
+            int mark1 = ModuleMark.getMark1();
+            int mark2 = ModuleMark.getMark2();
+            int mark3 = ModuleMark.getMark3();
+            int mark4 = ModuleMark.getMark4();
+
+            // set marks and get array
+            Student.setMarks(mark1, mark2, mark3, mark4);
+            int[] marks = Student.getMarks();
+
+            // outputting student details
+            System.out.println("Student name is: " + name);
+            System.out.println("Student id is: " + id);
+            System.out.println("They are enrolled on: " + course_name);
+
+            // outputting mark and grade for each module
+            System.out.println("Student's mark for each course module:");
+            int count = 0;
+            for(Module moduleX : modules) {
+                String module_name = moduleX.getModuleName();
+                int mark = marks[count];
+                Module.grade grade = moduleX.getGrade(mark);
+                System.out.println("Marks for module " + module_name + " is: " + mark + ", so grade for module is: Grade " + grade + ".");
+                count = count + 1;
+            }
+            // outputting new line to split up output
+            System.out.println("");
         }
     }
 }
@@ -115,14 +135,22 @@ public class Student {
     public int id;
     public Course course;
     public static int[] marks = new int[4];
+    public ArrayList<Student> students;
     
-    public Student(String name, int id, int mark1, int mark2, int mark3, int mark4) {
+    public Student(String name, int id) {
         this.name = name;
         this.id = id;
+    }
+
+    public static void setMarks(int mark1, int mark2, int mark3, int mark4) {
         Student.marks[0] = mark1;
         Student.marks[1] = mark2;
         Student.marks[2] = mark3;
         Student.marks[3] = mark4;
+    }
+
+    public void AddStudents(ArrayList<Student> students) {
+        this.students = students;
     }
     
     public String getName() {
@@ -208,5 +236,33 @@ class Module {
         } else {
             return grade.INVALID;
         }
+    }
+}
+
+class ModuleMark {
+    public static int mark1;
+    public static int mark2;
+    public static int mark3;
+    public static int mark4;
+    static Random randomNum = new Random();
+
+    public static int getMark1() {
+        mark1 = randomNum.nextInt(101);
+        return mark1;
+    }
+
+    public static int getMark2() {
+        mark2 = randomNum.nextInt(101);
+        return mark2;
+    }
+
+    public static int getMark3() {
+        mark3 = randomNum.nextInt(101);
+        return mark3;
+    }
+
+    public static int getMark4() {
+        mark4 = randomNum.nextInt(101);
+        return mark4;
     }
 }
