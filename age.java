@@ -23,5 +23,6 @@ public class age {
         } else {
             System.out.println("Invalid answer.");
         }
+        scan.close();
     }
 }

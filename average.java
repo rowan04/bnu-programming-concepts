@@ -11,5 +11,6 @@ public class average {
         num2 = scan.nextDouble();
         double average = (num1 + num2)/2;
         System.out.println("The average is: " + average);
+        scan.close();
     }
 }

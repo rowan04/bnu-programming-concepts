@@ -15,5 +15,6 @@ public class gradeClassification {
             case 'F': System.out.println("University undergraduate clasification: Fail.");break;
             default: System.out.println("Invalid mark.");
         }
+        scan.close();
     }
 }

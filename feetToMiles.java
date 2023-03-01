@@ -9,5 +9,6 @@ public class feetToMiles {
         feet = scan.nextDouble();
         double inMiles = feet / FEET_IN_MILES;
         System.out.println("That is " + inMiles + " miles.");
+        scan.close();
     }
 }

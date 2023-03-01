@@ -9,5 +9,6 @@ public class interest {
         money = scan.nextInt();
         double savings = money + (money * INTEREST);
         System.out.println("You will save: " + savings);
+        scan.close();
     }
 }

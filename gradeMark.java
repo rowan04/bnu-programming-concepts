@@ -23,5 +23,6 @@ public class gradeMark {
         } else {
             System.out.println("Mark is invalid");
         }
+        scan.close();
     }
 }

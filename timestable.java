@@ -25,6 +25,7 @@ public class timestable {
                 System.out.println("Invalid option. Exiting.");
                 option = false;
             }
+            scan.close();
         }
         while(option==true);
         System.out.println("Bye!");

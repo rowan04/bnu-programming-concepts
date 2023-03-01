@@ -11,5 +11,6 @@ public class outputorders {
         num2 = scan.nextInt();
         System.out.println(num1 + ", " + num2);
         System.out.println(num2 + ", " + num1);
+        scan.close();
     }
 }

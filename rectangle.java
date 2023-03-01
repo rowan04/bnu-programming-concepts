@@ -13,5 +13,6 @@ public class rectangle {
         System.out.println("The perimeter is: " + perimeter);
         int area = (height * width);
         System.out.println("The area is: " + area);
+        scan.close();
     }
 }

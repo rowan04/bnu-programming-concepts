@@ -19,5 +19,6 @@ public class evenLoop {
                 count = count + 1;
             }
         }
+        scan.close();
     }
 }
