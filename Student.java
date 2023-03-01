@@ -1,5 +1,5 @@
-//import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 class assign {
@@ -69,6 +69,11 @@ class assign {
 
         // print student and marks for each module
         printStudent(students, course, course_name, modules);
+
+        // print out the statistics
+        printMinMark();
+        printMaxMark();
+        printMeanMark();
     }
 
     //print course details and it's modules
@@ -91,6 +96,8 @@ class assign {
 
     //print student details and their mark/grade for each of their modules
     public static void printStudent(ArrayList<Student> students, Course course, String course_name, ArrayList<Module> modules) {
+        // set i as a count
+        int i = 0;
         for(Student studentX : students) {
             // get student info
             String name = studentX.getName();
@@ -118,15 +125,53 @@ class assign {
             System.out.println("Student's mark for each course module:");
             int count = 0;
             for(Module moduleX : modules) {
+                // get module name
                 String module_name = moduleX.getModuleName();
+
+                // get students mark for the module from the marks array
                 int mark = marks[count];
+                // add students mark to the marksCalc array
+                ModuleMark.addMarksCalc(i, mark);
+                // add students name to the name array to correspond mark to student
+                ModuleMark.addMarksStudent(i, name);
+
+                // calculate the grade using getGrade method
                 Module.grade grade = moduleX.getGrade(mark);
+
+                // output
                 System.out.println("Marks for module " + module_name + " is: " + mark + ", so grade for module is: Grade " + grade + ".");
+
+                // adding to counts
                 count = count + 1;
+                i = i + 1;
             }
             // outputting new line to split up output
             System.out.println("");
         }
+    }
+
+    public static void printMinMark() {
+        // finding the minimum mark
+        int minMark = ModuleMark.getMinMark();
+        // finding the student that corresponds to that mark
+        String minMarkStudent = ModuleMark.getMinMarkStudent(minMark);
+        // output
+        System.out.println("The worst mark achieved was: " + minMark + " by: " + minMarkStudent);
+    }
+
+    public static void printMaxMark() {
+        // finding the maximum mark
+        int maxMark = ModuleMark.getMaxMark();
+        // finding the student that corresponds to that mark
+        String maxMarkStudent = ModuleMark.getMaxMarkStudent(maxMark);
+        // output
+        System.out.println("The best mark achieved was: " + maxMark + " by: " + maxMarkStudent);
+    }
+
+    public static void printMeanMark() {
+        //finding the mean mark
+        double meanMark = ModuleMark.getMeanMark();
+        System.out.println("The mean mark achieved was: " + meanMark);
     }
 }
 
@@ -245,6 +290,8 @@ class ModuleMark {
     public static int mark3;
     public static int mark4;
     static Random randomNum = new Random();
+    public static int[] marksCalc = new int[16];
+    public static String[] marksStudent = new String[16];
 
     public static int getMark1() {
         mark1 = randomNum.nextInt(101);
@@ -264,5 +311,60 @@ class ModuleMark {
     public static int getMark4() {
         mark4 = randomNum.nextInt(101);
         return mark4;
+    }
+
+    public static void addMarksCalc(int i, int mark) {
+        ModuleMark.marksCalc[i] = mark;
+    }
+
+    public static void addMarksStudent(int i, String studentName) {
+        ModuleMark.marksStudent[i] = studentName;
+    }
+
+    public static int getMinMark() {
+        int minMark = Arrays.stream(marksCalc).min().getAsInt();
+        return(minMark);
+    }
+
+    public static String getMinMarkStudent(int minMark) {
+        int index = 0;
+        for (int i : marksCalc) {
+            if (i == minMark) {
+                String minMarkStudent = marksStudent[index];
+                return (minMarkStudent);
+            }
+            else {
+                index = index + 1;
+            }
+        }
+        return null;
+    }
+
+    public static int getMaxMark() {
+        int maxMark = Arrays.stream(marksCalc).max().getAsInt();
+        return(maxMark);
+    }
+
+    public static String getMaxMarkStudent(int maxMark) {
+        int index = 0;
+        for (int i : marksCalc) {
+            if (i == maxMark) {
+                String maxMarkStudent = marksStudent[index];
+                return (maxMarkStudent);
+            }
+            else {
+                index = index + 1;
+            }
+        }
+        return null;
+    }
+
+    public static double getMeanMark() {
+        int sum = 0;
+        for (int i = 0; i < 16; i++) {
+            sum += marksCalc[i];
+        }
+        double meanMark = sum/16;
+        return(meanMark);
     }
 }
