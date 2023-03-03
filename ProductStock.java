@@ -2,22 +2,7 @@ import java.util.ArrayList;
 
 class ProductStock {
     public static void main(String[] args) {
-        // create the productList
-        ArrayList<Product> productList = new ArrayList<Product>();
-
-        // create products
-        StockDemo.createProduct(4081, "Mclaren Cap", 300, productList);
-        StockDemo.createProduct(1397, "AlphaTauri Hoodie", 40, productList);
-        StockDemo.createProduct(2855, "Ferrari Polo", 550, productList);
-
-        // print stock
-        StockDemo.printStock(productList);
-
-        // search stock
-        StockDemo.searchStock(1397, productList);
-
-        // remove item from stock
-        StockDemo.deleteProduct(2855, productList);
+        StockDemo.run();
     }
 }
 
@@ -116,5 +101,25 @@ class StockDemo {
 
     public static void deleteProduct(int id, ArrayList<Product> productList) {
         StockList.RemoveProduct(productList, id);
+    }
+
+    public static void run() {
+        // run the program
+        // create the productList
+        ArrayList<Product> productList = new ArrayList<Product>();
+
+        // create products
+        StockDemo.createProduct(4081, "Mclaren Cap", 300, productList);
+        StockDemo.createProduct(1397, "AlphaTauri Hoodie", 40, productList);
+        StockDemo.createProduct(2855, "Ferrari Polo", 550, productList);
+
+        // print stock
+        StockDemo.printStock(productList);
+
+        // search stock
+        StockDemo.searchStock(1397, productList);
+
+        // remove item from stock
+        StockDemo.deleteProduct(2855, productList);
     }
 }
