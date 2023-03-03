@@ -2,7 +2,8 @@ import java.util.ArrayList;
 
 class ProductStock {
     public static void main(String[] args) {
-        StockDemo.run();
+        StockDemo stockDemo = new StockDemo();
+        stockDemo.run();
     }
 }
 
@@ -12,9 +13,24 @@ class Product {
     public int quantity;
 
     public Product(int id, String name, int quantity) {
+        this.id = setId(id);
+        this.name = setName(name);
+        this.quantity = setQuantity(quantity);
+    }
+
+    public int setId(int id) {
         this.id = id;
+        return this.id;
+    }
+
+    public String setName(String name) {
         this.name = name;
+        return this.name;
+    }
+
+    public int setQuantity(int quantity) {
         this.quantity = quantity;
+        return this.quantity;
     }
 
     public int getId() {
@@ -75,6 +91,9 @@ class StockList {
 }
 
 class StockDemo {
+    public void stockDemo() {
+    }
+
     public static void createProduct(int id, String name, int quantity, ArrayList<Product> productList) {
         // create product and add it to stockList
         Product product = new Product(id, name, quantity);
@@ -103,7 +122,7 @@ class StockDemo {
         StockList.RemoveProduct(productList, id);
     }
 
-    public static void run() {
+    public void run() {
         // run the program
         // create the productList
         ArrayList<Product> productList = new ArrayList<Product>();
