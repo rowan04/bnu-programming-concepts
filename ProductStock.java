@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 class ProductStock {
     public static void main(String[] args) {
         // product constructor
@@ -43,7 +45,26 @@ class Product {
 }
 
 class StockList {
+    public ArrayList<Product> products;
 
+    public static void AddProduct(ArrayList<Product> products, Product product) {
+        products.add(product);
+    }
+
+    public static void RemoveProduct(ArrayList<Product> products, Product product) {
+        products.remove(product);
+    }
+
+    public static void FindProduct(ArrayList<Product> products, int ProductId) {
+        for (Product productX : products) {
+            if (productX.getId() == ProductId) {
+                String name = productX.getName();
+                int quantity = productX.getQuantity();
+                System.out.println("We have " + quantity + " of product name: " + name + " and Id: " + ProductId);
+            }
+        }
+        System.out.println("We have none of the product with id: " + ProductId + " in stock.");       
+    }
 }
 
 class StockDemo {
