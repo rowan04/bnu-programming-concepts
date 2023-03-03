@@ -2,21 +2,22 @@ import java.util.ArrayList;
 
 class ProductStock {
     public static void main(String[] args) {
-        // product constructor
-        int id = 4081;
-        String name = "McLaren Cap";
-        int quantity = 300;
-        Product product = new Product(id, name, quantity);
-        int product_id = product.getId();
-        String product_name = product.getName();
-        int product_quantity = product.getQuantity();
-        printProduct(product_id, product_name, product_quantity);
-    }
+        // create the productList
+        ArrayList<Product> productList = new ArrayList<Product>();
 
-    public static void printProduct(int id, String name, int quantity) {
-        // output product details
-        System.out.println("Product name is: " + name + ", with id: " + id);
-        System.out.println("We have " + quantity + " of them.");
+        // create products
+        StockDemo.createProduct(4081, "Mclaren Cap", 300, productList);
+        StockDemo.createProduct(1397, "AlphaTauri Hoodie", 40, productList);
+        StockDemo.createProduct(2855, "Ferrari Polo", 550, productList);
+
+        // print stock
+        StockDemo.printStock(productList);
+
+        // search stock
+        StockDemo.searchStock(1397, productList);
+
+        // remove item from stock
+        StockDemo.deleteProduct(2855, productList);
     }
 }
 
@@ -51,22 +52,69 @@ class StockList {
         products.add(product);
     }
 
-    public static void RemoveProduct(ArrayList<Product> products, Product product) {
-        products.remove(product);
+    public static void RemoveProduct(ArrayList<Product> products, int ProductId) {
+        boolean found = false;
+        for (Product productX : products) {
+            if (productX.getId() == ProductId) {
+                found = true;
+                products.remove(productX);
+                System.out.println("Product with id: " + ProductId + " has been removed from stock list.");
+                break;
+            }
+        }
+
+        // check if product was found - if it wasn't, output error message
+        if (found == false) {
+            System.out.println("We have don't have any of the product with id: " + ProductId + " in stock, so can't be removed.");
+        }   
     }
 
     public static void FindProduct(ArrayList<Product> products, int ProductId) {
+        boolean found = false;
         for (Product productX : products) {
             if (productX.getId() == ProductId) {
+                // set found to true
+                found = true;
+                // output info
                 String name = productX.getName();
                 int quantity = productX.getQuantity();
                 System.out.println("We have " + quantity + " of product name: " + name + " and Id: " + ProductId);
             }
         }
-        System.out.println("We have none of the product with id: " + ProductId + " in stock.");       
+
+        // check if product was found - if it wasn't, output error message
+        if (found == false) {
+            System.out.println("We have none of the product with id: " + ProductId + " in stock.");
+        }       
     }
 }
 
 class StockDemo {
+    public static void createProduct(int id, String name, int quantity, ArrayList<Product> productList) {
+        // create product and add it to stockList
+        Product product = new Product(id, name, quantity);
+        StockList.AddProduct(productList, product);
 
+        //int product_id = product.getId();
+        //String product_name = product.getName();
+        //int product_quantity = product.getQuantity();
+    }
+
+    public static void printStock(ArrayList<Product> productList) {
+        // return all products and quantities in stock
+        System.out.println("Products in stock:");
+        for(Product productX : productList) {
+            String productName = productX.getName();
+            int productQuantity = productX.getQuantity();
+            System.out.println(productQuantity + " lots of " + productName + ".");
+        }
+    }
+
+    public static void searchStock(int id, ArrayList<Product> productList) {
+        StockList.FindProduct(productList, id);
+    }
+
+    public static void deleteProduct(int id, ArrayList<Product> productList) {
+        StockList.RemoveProduct(productList, id);
+    }
 }
