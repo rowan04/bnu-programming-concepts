@@ -11,6 +11,23 @@ public class Person extends Actor
     private static final int INFECTION_TIME = 300;
     private int infection = 0;
     private boolean beenInfected = false;
+    private static int numInfected = 0;
+    
+    /**
+     * Return the number of infected people
+     */
+    public static int getNumInfected()
+    {
+        return numInfected;
+    }
+    
+    /**
+     * Reset the Person class to be used again for another run
+     */
+    public static void reset()
+    {
+        numInfected = 0;
+    }
     
     /**
      * Create a person with a random initial direction of movement 
@@ -47,10 +64,15 @@ public class Person extends Actor
         }
     }
     
+    /**
+     *  Try to infect this person.
+     *  If they are not immune or infected already, they will be infected
+     */
     public void infect()
     {
         if (!beenInfected) {
             infection = INFECTION_TIME;
+            numInfected++;
             setImage("ppl3.png");
             beenInfected = true;
         }
@@ -67,7 +89,7 @@ public class Person extends Actor
         }
     }
     
-    private boolean isInfected()
+    public boolean isInfected()
     {
         return infection > 0;
     }
@@ -83,6 +105,7 @@ public class Person extends Actor
         }
         if (infection == 0) {
             setImage("ppl2.png");
+            numInfected--;
         }
         
     }
