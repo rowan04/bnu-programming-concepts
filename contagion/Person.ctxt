@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Person
+comment0.text=\r\n\ A\ person\ in\ a\ virus\ simulation\r\n\ \r\n\ @author\ Rowan\ Moss\r\n\ @version\ 1.0\r\n
+comment1.params=
+comment1.target=void\ act()
+comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Person\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+numComments=2
