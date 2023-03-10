@@ -1,11 +1,14 @@
 #Greenfoot project file
 class.Person.image=ppl1.png
-editor.fx.0.height=756
-editor.fx.0.width=822
+dependency1.from=MyWorld
+dependency1.to=Person
+dependency1.type=UsesDependency
+editor.fx.0.height=816
+editor.fx.0.width=846
 editor.fx.0.x=-932
 editor.fx.0.y=122
 height=1056
-package.numDependencies=0
+package.numDependencies=1
 package.numTargets=2
 project.charset=UTF-8
 publish.hasSource=false
