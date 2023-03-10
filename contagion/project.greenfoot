@@ -1,4 +1,5 @@
 #Greenfoot project file
+class.MyWorld.image=bricks2.jpg
 class.Person.image=ppl1.png
 dependency1.from=MyWorld
 dependency1.to=Person

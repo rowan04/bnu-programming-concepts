@@ -8,7 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Person extends Actor
 {
-    private boolean isInfected = false;
+    private static final int INFECTION_TIME = 300;
+    private int infection = 0;
+    private boolean beenInfected = false;
     
     /**
      * Create a person with a random initial direction of movement 
@@ -25,8 +27,9 @@ public class Person extends Actor
     public void act()
     {
         move();
-        if (isInfected) {
+        if (isInfected()) {
             infectOthers();
+            heal();
         }
     }
     
@@ -46,8 +49,11 @@ public class Person extends Actor
     
     public void infect()
     {
-        isInfected = true;
-        setImage("ppl3.png");
+        if (!beenInfected) {
+            infection = INFECTION_TIME;
+            setImage("ppl3.png");
+            beenInfected = true;
+        }
     }
     
     /**
@@ -59,5 +65,25 @@ public class Person extends Actor
         if (other != null) {
             other.infect();
         }
+    }
+    
+    private boolean isInfected()
+    {
+        return infection > 0;
+    }
+    
+    /**
+     * If we are infected, execute the healing process.
+     * If infection reaches zero, we are immune.
+     */
+    private void heal()
+    {
+        if (isInfected()) {
+            infection--;
+        }
+        if (infection == 0) {
+            setImage("ppl2.png");
+        }
+        
     }
 }
