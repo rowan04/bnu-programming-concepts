@@ -11,7 +11,18 @@ public class Person extends Actor
     private static final int INFECTION_TIME = 300;
     private int infection = 0;
     private boolean beenInfected = false;
+    private boolean isIsolating;
+    private static int numHealthy = 151;
     private static int numInfected = 0;
+    private static int numImmune = 0;
+    
+    /**
+     * Return the number of healthy people
+     */
+    public static int getNumHealthy()
+    {
+        return numHealthy;
+    }
     
     /**
      * Return the number of infected people
@@ -22,19 +33,30 @@ public class Person extends Actor
     }
     
     /**
+     * Return the number of immune people
+     */
+    public static int getNumImmune()
+    {
+        return numImmune;
+    }
+    
+    /**
      * Reset the Person class to be used again for another run
      */
     public static void reset()
     {
+        numHealthy = 151;
         numInfected = 0;
+        numImmune = 0;
     }
     
     /**
      * Create a person with a random initial direction of movement 
      */
-    public Person()
+    public Person(boolean isolating)
     {
         turn(Greenfoot.getRandomNumber(360));
+        isIsolating = isolating;
     }
     
     /**
@@ -43,7 +65,9 @@ public class Person extends Actor
      */
     public void act()
     {
-        move();
+        if (!isIsolating) {
+            move();
+        }
         if (isInfected()) {
             infectOthers();
             heal();
@@ -73,6 +97,7 @@ public class Person extends Actor
         if (!beenInfected) {
             infection = INFECTION_TIME;
             numInfected++;
+            numHealthy--;
             setImage("ppl3.png");
             beenInfected = true;
         }
@@ -106,6 +131,7 @@ public class Person extends Actor
         if (infection == 0) {
             setImage("ppl2.png");
             numInfected--;
+            numImmune++;
         }
         
     }
