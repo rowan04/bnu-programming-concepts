@@ -3,8 +3,8 @@ import java.util.Scanner;
 public class timestable {
     public static void main(String[] args) {
         boolean option;
+        Scanner scan = new Scanner(System.in);
         do {
-            Scanner scan = new Scanner(System.in);
             int num;
             System.out.println("Which times table would you like to see? (Enter an integer):");
             num = scan.nextInt();
@@ -25,9 +25,9 @@ public class timestable {
                 System.out.println("Invalid option. Exiting.");
                 option = false;
             }
-            scan.close();
         }
         while(option==true);
         System.out.println("Bye!");
+        scan.close();
     }
 }
