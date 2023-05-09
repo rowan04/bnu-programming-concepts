@@ -53,8 +53,7 @@ public class songProgram {
 
             case '3':
             // user selected to add a song
-            // due to errors with the scanner in this case, i had to create a
-            // scanner unique to this case
+            // due to errors with the scanner in this case, i had to create a scanner unique to this case
             Scanner scanAdd = new Scanner(System.in);
             System.out.println("Enter the details of the song to add!");
             System.out.println("Enter song name:");
@@ -70,12 +69,13 @@ public class songProgram {
 
             case '4':
             // user selected to remove a song
-            // due to errors with the scanner in this case, i had to create a
-            // scanner unique to this case
+            // due to errors with the scanner in this case, i had to create a scanner unique to this case
             Scanner scanRemove = new Scanner(System.in);
             System.out.println("Enter the name of the song to remove:");
             String removeName = scanRemove.nextLine();
-            Song_List.removeSongFromList(removeName, songList);
+            System.out.println("Enter the name of the artist of the song:");
+            String removeArtist = scanRemove.nextLine();
+            Song_List.removeSongFromList(removeName, removeArtist, songList);
             runProgram(songList);
             scanRemove.close();
             break;
@@ -194,34 +194,52 @@ public class songProgram {
     }
 }
 
+/**
+ * the Song class
+ * has attributes of name, artist and numPlays
+ */
 class Song {
     public String name;
     public String artist;
     public int numPlays;
 
+    // constructor for song class
     public Song(String name, String artist, int numPlays) {
         this.name = name;
         this.artist = artist;
         this.numPlays = numPlays;
     }
 
+    // returns song name
     public String getName() {
         return name;
     }
 
+    // returns song artist
     public String getArtist() {
         return artist;
     }
 
+    // returns number of plays
     public int getNumPlays() {
         return numPlays;
     }
 }
 
+/**
+ * Song_List class
+ * contains methods which manipulate the song list
+ * has ArrayList attribute - songList
+ */
 class Song_List {
     public static ArrayList<Song> songList;
 
+    /**
+     * method for printing out the song list
+     * @param songList
+     */
     public static void printSongList(ArrayList<Song> songList) {
+        // uses for loop to loop through list
         for(Song songx : songList) {
             // get song info
             String name = songx.getName();
@@ -238,38 +256,19 @@ class Song_List {
         }
     }
 
-    public static void addSongToList(String name, String artist, int numPlays, ArrayList<Song> songList) {
-        Song newSong = new Song(name, artist, numPlays);
-        songList.add(newSong);
-        System.out.println("Song added!\n");
-    }
-
-    public static void removeSongFromList(String removeName, ArrayList<Song> songList) {
-        boolean found = false;
-        for(Song songx : songList) {
-            String name = songx.getName();
-            if (name.equals(removeName)) {
-                found = true;
-                songList.remove(songx);
-                System.out.println("Song with name: " + removeName + " has been removed from song list.\n");
-                break;
-            }
-        }
-
-        // check if product was found - if it wasn't, output error message
-        if (found == false) {
-            System.out.println("There is no song with name '" + removeName + "' in song list, so can't be removed.\n");
-        }
-    }
-
+    /**
+     * method for printing songs in song list over a certain amount of plays
+     * @param songList
+     * @param minNumPlays
+     */
     public static void printSongsAbovePlays(ArrayList<Song> songList, int minNumPlays) {
+        // uses for loop to loop through list
         for(Song songx : songList) {
             // get number of plays for the song
             int numPlays = songx.getNumPlays();
 
             // check if number of plays is above minNumPlays
-            // if it is, display song info
-            // if not, skip
+            // if it is, display song info. if not, skip
             if (numPlays >= minNumPlays) {
                 // get rest of song info
                 String name = songx.getName();
@@ -283,6 +282,49 @@ class Song_List {
                 // output new line to split up output
                 System.out.println("");
             }
+        }
+    }
+
+    /**
+     * method for adding a song to the list
+     * @param name
+     * @param artist
+     * @param numPlays
+     * @param songList
+     */
+    public static void addSongToList(String name, String artist, int numPlays, ArrayList<Song> songList) {
+        Song newSong = new Song(name, artist, numPlays);
+        songList.add(newSong);
+        System.out.println("Song added!\n");
+    }
+
+    /**
+     * method for removing a song from the list
+     * @param removeName
+     * @param removeArtist
+     * @param songList
+     */
+    public static void removeSongFromList(String removeName, String removeArtist, ArrayList<Song> songList) {
+        // boolean variable to track if song has been found
+        boolean found = false;
+        // uses for loop to loop through list
+        for(Song songx : songList) {
+            // gets song name and artist
+            String name = songx.getName();
+            String artist = songx.getArtist();
+            // if that song exists, remove it
+            if (name.equals(removeName) && artist.equals(removeArtist)) {
+                // set found to true
+                found = true;
+                songList.remove(songx);
+                System.out.println("Song with name: " + removeName + " and artist: " + removeArtist + " has been removed from song list.\n");
+                break;
+            }
+        }
+
+        // if that song doesn't exist, output error message
+        if (found == false) {
+            System.out.println("There is no song with name '" + removeName + "' and artist '" + removeArtist + "' in song list, so can't be removed.\n");
         }
     }
 }
