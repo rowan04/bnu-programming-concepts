@@ -45,7 +45,7 @@ public class songProgram {
             // user selected to view songs over a certain play count
             System.out.println("Enter the minimum play count for your search:");
             int MinNumPlays = scan.nextInt();
-            System.out.println("Showing song list over " + MinNumPlays + "!\n");
+            System.out.println("Showing list of songs with plays over " + MinNumPlays + "!\n");
             Song_List.printSongsAbovePlays(songList, MinNumPlays);
             System.out.println("");
             runProgram(songList);
